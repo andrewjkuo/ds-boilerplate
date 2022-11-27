@@ -1,4 +1,4 @@
-.PHONY build format install lint notebook req req_hooks test test_html
+.PHONY: build format install lint notebook req req_hooks test test_html
 
 req:
 	pip install -U pip setuptools
@@ -15,7 +15,7 @@ build:
 
 notebook: req
 	jupyter notebook
-	
+
 test: req
 	coverage run -m pytest
 	coverage report -m
