@@ -86,6 +86,12 @@ Notebooks do not play nicely with source control. They create ugly diffs and mak
 }
 ```
 
+### Requirements
+Requirements should be stored in ```requirements.txt``` using ```pip freeze```. By default, ```pip freeze``` will include your editable package so use the following command:
+```
+pip freeze --exclude-editable > requirements.txt
+```
+
 ### Black
 Black is "the uncompromising Python code formatter". It enforces PEP 8 compliance, improves readability and reduces git diffs. It is setup as a pre-commit hook but you can also call it separately.
 ```
