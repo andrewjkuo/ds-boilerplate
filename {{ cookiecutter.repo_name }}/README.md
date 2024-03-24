@@ -20,12 +20,13 @@
 ├── requirements.txt       <- The requirements file for reproducing the analysis environment.
 ├── setup.py               <- Makes project pip installable so src can be imported.
 ├── src                    <- Source code for use in this project.
-│   ├── __init__.py        <- Make src a Python module.
-│   └── data               <- Scripts to download or generate data.
-│   └── features           <- Scripts to turn raw data into features for modeling.
-│   └── model              <- Scripts to train models and make predictions.
-│   └── utils              <- Scripts with utility functions.
-│   └── visualisation      <- Scripts to create exploratory and results-oriented visualisations.
+│   └── {{ cookiecutter.repo_name }}
+│       ├── __init__.py    <- Make src a Python module.
+│       ├── data           <- Scripts to download or generate data.
+│       ├── features       <- Scripts to turn raw data into features for modeling.
+│       ├── model          <- Scripts to train models and make predictions.
+│       ├── utils          <- Scripts with utility functions.
+│       └── visualisation  <- Scripts to create exploratory and results-oriented visualisations.
 └── tests                  <- Tests for functions in src.
 ```
 
