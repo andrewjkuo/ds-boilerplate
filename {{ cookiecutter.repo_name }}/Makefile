@@ -1,30 +1,35 @@
-.PHONY: build format install lint notebook req req_hooks test test_html
+# GLOBALS
 
-req:
-	pip install -U pip setuptools
-	pip install -r requirements.txt
+# COMMANDS
 
-req_hooks: req
+.PHONY: install
+install:
+	pip install -U pip setuptools wheel
+	pip install -e .[dev]
 	pre-commit install
 
-install: req
-	pip install -e .
-
+.PHONY: build
 build:
 	docker build -t {{ cookiecutter.repo_name }} .
 
-notebook: req
-	jupyter notebook
+.PHONY: clean
+clean:
+	find . -type f -name "*.py[co]" -delete
+	find . -type d -name "__pycache__" -delete
 
-test: req
+.PHONY: test
+test: install
 	coverage run -m pytest
 	coverage report -m
 
+.PHONY: test_html
 test_html: test
 	python -m http.server --directory htmlcov/
 
+.PHONY: lint
 lint:
 	flake8 .
 
+.PHONY: format
 format:
 	black .
