@@ -10,7 +10,8 @@ authors = [
   { name = "{{ cookiecutter.author_name }}" }
 ]
 dependencies = [
-  "PyYAML"
+  "PyYAML",
+  "python-dotenv"
 ]
 
 [project.optional-dependencies]
