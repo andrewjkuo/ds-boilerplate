@@ -11,7 +11,22 @@ authors = [
 ]
 dependencies = [
   "PyYAML",
-  "python-dotenv"
+  "python-dotenv",
+  {% if cookiecutter.cloud_provider == 'aws' -%}
+  "boto3",
+  "botocore",
+  {% elif cookiecutter.cloud_provider == 'gcp' -%}
+  "google-cloud-storage",
+  "google-auth",
+  {% elif cookiecutter.cloud_provider == 'azure' -%}
+  "azure-storage-blob",
+  {% endif -%}
+  {% if cookiecutter.database_type == 'postgres' -%}
+  "psycopg2-binary",
+  {% elif cookiecutter.database_type == 'mysql' -%}
+  "mysql-connector-python",
+  {% endif -%}
+
 ]
 
 [project.optional-dependencies]
