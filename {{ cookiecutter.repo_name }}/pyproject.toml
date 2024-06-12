@@ -35,7 +35,10 @@ dev = [
   "coverage",
   "flake8",
   "pre-commit",
-  "pytest"
+  {% if cookiecutter.use_prefect in ['yes', 'y', 'YES', 'Y'] -%}
+  "prefect",
+  {% endif -%}
+  "pytest",
 ]
 
 [tool.setuptools.packages.find]

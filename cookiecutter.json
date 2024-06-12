@@ -4,6 +4,7 @@
     "package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
     "include_streamlit_app": "no",
     "include_fastapi_app": "no",
+    "use_prefect": "no",
     "cloud_provider": ["aws", "gcp", "azure", "none"],
     "database_type": ["postgres", "mysql", "none"],
     "description": "A short description of the project.",
