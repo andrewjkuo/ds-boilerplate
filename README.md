@@ -1,7 +1,9 @@
 # Data Science Boilerplate
 A standardised project structure for doing and sharing data science work that enforces best practices.
 
-This template has been heavily influenced by [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science/), [Kedro](https://kedro.org/) and [govcookiecutter](https://best-practice-and-impact.github.io/govcookiecutter/#govcookiecutter) but I've added a few features of my own.
+This template has been influenced by [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science/), [Kedro](https://kedro.org/) and [govcookiecutter](https://best-practice-and-impact.github.io/govcookiecutter/#govcookiecutter). The goal is to maintain modularity and separation of concerns:
+- **Shared Code**: All reusable code should reside in the `src/{{ cookiecutter.package_name }}` directory.
+- **Apps, Pipelines, and Notebooks**: Use the shared code in apps, pipelines, and notebooks, ensuring that your project remains clean and maintainable.
 
 ## Usage
 1. Install cookiecutter.
@@ -41,11 +43,6 @@ The directory structure of your new project looks like this:
 │       └── visualization  <- Scripts to create exploratory and results-oriented visualizations.
 └── tests                  <- Tests for functions in src.
 ```
-
-## Project Philosophy
-The goal is to maintain modularity and separation of concerns:
-- **Shared Code**: All reusable code should reside in the `src/{{ cookiecutter.package_name }}` directory.
-- **Apps, Pipelines, and Notebooks**: Use the shared code in apps, pipelines, and notebooks, ensuring that your project remains clean and maintainable.
 
 ## Future
 * Test this template in more environments.
