@@ -3,18 +3,19 @@ import os
 import boto3
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError
 
-ENV = os.getenv('ENV', 'production')
+ENV = os.getenv("ENV", "production")
+
 
 def connect_to_aws_s3():
     try:
-        if ENV == 'production':
-            s3 = boto3.client('s3')  # Assumes IAM roles are configured for production
+        if ENV == "production":
+            s3 = boto3.client("s3")
         else:
             s3 = boto3.client(
-                's3',
-                aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-                aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
-                region_name=os.getenv('AWS_REGION')
+                "s3",
+                aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+                aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+                region_name=os.getenv("AWS_REGION"),
             )
         return s3
     except (NoCredentialsError, PartialCredentialsError) as e:
@@ -24,16 +25,20 @@ def connect_to_aws_s3():
 from google.cloud import storage
 from google.oauth2 import service_account
 
-ENV = os.getenv('ENV', 'production')
+ENV = os.getenv("ENV", "production")
+
 
 def connect_to_gcp_storage():
     try:
-        if ENV == 'production':
-            client = storage.Client()  # Assumes the environment is already authenticated
+        if ENV == "production":
+            client = storage.Client()
         else:
-            credentials_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+            credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
             if credentials_path:
-                credentials = service_account.Credentials.from_service_account_file(credentials_path)
+                load_credentials = service_account.Credentials
+                credentials = load_credentials.from_service_account_file(
+                    credentials_path
+                )
                 client = storage.Client(credentials=credentials)
             else:
                 client = storage.Client()
@@ -44,13 +49,14 @@ def connect_to_gcp_storage():
 {% elif cookiecutter.cloud_provider == 'azure' -%}
 from azure.storage.blob import BlobServiceClient
 
-ENV = os.getenv('ENV', 'production')
+ENV = os.getenv("ENV", "production")
+
 
 def connect_to_azure_blob():
     try:
-        connect_str = os.getenv('AZURE_STORAGE_CONNECTION_STRING')
-        blob_service_client = BlobServiceClient.from_connection_string(connect_str)
-        return blob_service_client
+        connect_str = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+        blob_client = BlobServiceClient.from_connection_string(connect_str)
+        return blob_client
     except Exception as e:
         print(f"Error in Azure Blob connection: {e}")
         return None
