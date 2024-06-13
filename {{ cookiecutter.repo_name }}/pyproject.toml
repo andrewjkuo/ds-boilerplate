@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{ cookiecutter.package_name }}"
+version = "0.0.1"
+description = "{{ cookiecutter.description }}"
+authors = [
+  { name = "{{ cookiecutter.author_name }}" }
+]
+dependencies = [
+  "PyYAML",
+  "python-dotenv",
+  {% if cookiecutter.cloud_provider == 'aws' -%}
+  "boto3",
+  "botocore",
+  {% elif cookiecutter.cloud_provider == 'gcp' -%}
+  "google-cloud-storage",
+  "google-auth",
+  {% elif cookiecutter.cloud_provider == 'azure' -%}
+  "azure-storage-blob",
+  {% endif -%}
+  {% if cookiecutter.database_type == 'postgres' -%}
+  "psycopg2-binary",
+  {% elif cookiecutter.database_type == 'mysql' -%}
+  "mysql-connector-python",
+  {% endif -%}
+
+]
+
+[project.optional-dependencies]
+dev = [
+  "black",
+  "coverage",
+  "flake8",
+  "pre-commit",
+  {% if cookiecutter.use_prefect in ['yes', 'y', 'YES', 'Y'] -%}
+  "prefect",
+  {% endif -%}
+  "pytest",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+
+[tool.flake8]
+ignore = ["D203", "W503"]
+max-complexity = 9
+max-line-length = 88
+extend-ignore = ["E203"]
+exclude = [
+    "__pycache__",
+    "venv",
+    ".venv"
+]
+
+[tool.nbstripout]
