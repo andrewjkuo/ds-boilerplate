@@ -35,7 +35,7 @@ The directory structure of your new project looks like this:
 ├── references             <- Data dictionaries, manuals, and all other explanatory materials.
 ├── src                    <- Source code for use in this project.
 │   └── package
-│       ├── __init__.py    <- Make {{ cookiecutter.package_name }} a Python module.
+│       ├── __init__.py    <- Make package a Python module.
 │       ├── data           <- Scripts to download or generate data.
 │       ├── features       <- Scripts to turn raw data into features for modeling.
 │       ├── model          <- Scripts to train models and make predictions.
