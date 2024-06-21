@@ -55,7 +55,7 @@ test_html: test
 
 .PHONY: lint
 lint:
-	flake8 .
+	pflake8 .
 
 .PHONY: format
 format:
