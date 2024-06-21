@@ -41,16 +41,16 @@
 
 2. **Install Dependencies and Initialize Git**:
    ```bash
+   git init
    pip install -U pip setuptools
    pip install -e .[dev]
    pre-commit install
-   git init
    ```
 
    Alternatively, you can use the `make` command:
    ```bash
-   make install
    git init
+   make install
    ```
 
 3. **Make Initial Commit**:

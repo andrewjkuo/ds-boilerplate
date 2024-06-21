@@ -34,6 +34,7 @@ dev = [
   "black",
   "coverage",
   "flake8",
+  "pyproject-flake8",
   "pre-commit",
   {% if cookiecutter.use_prefect in ['yes', 'y', 'YES', 'Y'] -%}
   "prefect",
