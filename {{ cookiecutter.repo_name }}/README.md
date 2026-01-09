@@ -33,18 +33,16 @@
 
 ### Setup
 
-1. **Create and Activate Virtual Environment**:
+1. **Install uv** (if you don't already have it):
    ```bash
-   python -m venv .venv
-   source .venv/bin/activate
+   curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
 
-2. **Install Dependencies and Initialize Git**:
+2. **Install Dependencies and Initialize Git** (uv will create `.venv` automatically):
    ```bash
    git init
-   pip install -U pip setuptools
-   pip install -e .[dev]
-   pre-commit install
+   uv sync --extra dev
+   uv run pre-commit install
    ```
 
    Alternatively, you can use the `make` command:
@@ -52,6 +50,15 @@
    git init
    make install
    ```
+
+   To work inside the environment directly:
+   ```bash
+   source .venv/bin/activate
+   ```
+
+   Note: The Makefile exports `UV_PROJECT_ENVIRONMENT=.venv` so `uv run` uses the synced virtual environment. If you call `uv run` manually outside the Makefile, either export that variable or activate `.venv` first.
+
+   The template defaults to Python 3.11+ (see `requires-python` in `pyproject.toml`). If you need a different version, update that field before syncing.
 
 3. **Make Initial Commit**:
    ```bash

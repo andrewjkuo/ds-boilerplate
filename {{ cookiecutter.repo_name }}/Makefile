@@ -1,10 +1,12 @@
 # Makefile for {{cookiecutter.project_name}}
+UV ?= uv
+UV_PROJECT_ENVIRONMENT ?= .venv
+export UV_PROJECT_ENVIRONMENT
 
 .PHONY: install
 install:
-	pip install -U pip setuptools wheel
-	pip install -e .[dev]
-	pre-commit install
+	$(UV) sync --extra dev
+	$(UV) run pre-commit install
 
 {% if cookiecutter.include_streamlit_app in ['yes', 'y', 'YES', 'Y'] -%}
 
@@ -32,7 +34,7 @@ fastapi-run:
 
 .PHONY: start-prefect-server
 start-prefect-server:
-	prefect server start
+	$(UV) run prefect server start
 
 .PHONY: stop-prefect-server
 stop-prefect-server:
@@ -40,26 +42,26 @@ stop-prefect-server:
 
 .PHONY: deploy-prefect
 deploy-prefect:
-	python pipelines/flows.py
+	$(UV) run python pipelines/flows.py
 
 {% endif -%}
 
 .PHONY: test
 test: install
-	coverage run -m pytest
-	coverage report -m
+	$(UV) run coverage run -m pytest
+	$(UV) run coverage report -m
 
 .PHONY: test-html
 test_html: test
-	python -m http.server --directory htmlcov/
+	$(UV) run python -m http.server --directory htmlcov/
 
 .PHONY: lint
 lint:
-	pflake8 .
+	$(UV) run pflake8 .
 
 .PHONY: format
 format:
-	black .
+	$(UV) run black .
 
 .PHONY: clean
 clean:
