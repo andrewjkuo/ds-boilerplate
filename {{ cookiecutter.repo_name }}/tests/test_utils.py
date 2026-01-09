@@ -1,6 +1,6 @@
 import pytest
 import yaml
-from src.utils.util import get_conf
+from {{ cookiecutter.package_name }}.utils.util import get_conf
 
 
 @pytest.fixture

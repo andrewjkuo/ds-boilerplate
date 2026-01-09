@@ -6,13 +6,13 @@ This template has been influenced by [Cookiecutter Data Science](https://drivend
 - **Apps, Pipelines, and Notebooks**: Use the shared code in apps, pipelines, and notebooks, ensuring that your project remains clean and maintainable.
 
 ## Usage
-1. Install cookiecutter.
+1. Install [uv](https://docs.astral.sh/uv/) if you don't already have it.
    ```bash
-   pip install cookiecutter
+   curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
-2. Start a new project. You will be prompted to enter some configuration values.
+2. Start a new project (uvx will download cookiecutter on demand). You will be prompted to enter some configuration values. The template targets Python 3.11+ by default.
    ```bash
-   cookiecutter gh:andrewjkuo/ds-boilerplate
+   uvx cookiecutter gh:andrewjkuo/ds-boilerplate
    ```
 
 ## Project Structure
