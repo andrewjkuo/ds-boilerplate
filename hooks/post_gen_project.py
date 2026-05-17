@@ -1,6 +1,7 @@
 import os
 import shutil
 
+include_codex_scaffolding = "{{cookiecutter.include_codex_scaffolding}}"
 include_streamlit_app = "{{cookiecutter.include_streamlit_app}}"
 include_fastapi_app = "{{cookiecutter.include_fastapi_app}}"
 use_prefect = "{{cookiecutter.use_prefect}}"
@@ -9,6 +10,10 @@ proj_path = os.getcwd()
 utils_dir = os.path.join(proj_path, "src", "{{cookiecutter.package_name}}", "utils")
 
 # Remove unnecessary app templates
+if include_codex_scaffolding.lower() not in ['yes', 'y']:
+    os.remove(os.path.join(proj_path, 'AGENTS.md'))
+    shutil.rmtree(os.path.join(proj_path, 'tasks'))
+
 if include_streamlit_app.lower() not in ['yes', 'y']:
     shutil.rmtree(os.path.join(proj_path, 'app_streamlit'))
 
