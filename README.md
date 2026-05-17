@@ -15,10 +15,24 @@ This template has been influenced by [Cookiecutter Data Science](https://drivend
    uvx cookiecutter gh:andrewjkuo/ds-boilerplate
    ```
 
+## Template Options
+
+The prompt set is intended to keep generated projects lean. The main toggles are:
+
+- `include_codex_scaffolding`: include `AGENTS.md` plus `tasks/todo.md`, `tasks/lessons.md`, and `tasks/decisions.md`
+- `include_streamlit_app`: include a starter Streamlit app under `app_streamlit/`
+- `include_fastapi_app`: include a starter FastAPI app under `app_fastapi/`
+- `use_prefect`: include Prefect task and flow scaffolding under `pipelines/`
+- `cloud_provider`: include cloud storage utility code and matching dependencies
+- `database_type`: include database utility code and matching dependencies
+
+If `include_codex_scaffolding=no`, the generated project will not include `AGENTS.md` or `tasks/`.
+
 ## Project Structure
 The directory structure of your new project looks like this:
 ```
 ├── .env                   <- Local secrets and credentials that should not be stored in source control.
+├── AGENTS.md              <- Optional repo-local Codex instructions for the generated project.
 ├── Makefile               <- Makefile with useful commands for project setup and running analysis.
 ├── README.md              <- The top-level README for developers using this project.
 ├── app                    <- App-specific code, requirements file and Dockerfile.
@@ -41,8 +55,20 @@ The directory structure of your new project looks like this:
 │       ├── model          <- Scripts to train models and make predictions.
 │       ├── utils          <- Utility functions.
 │       └── visualization  <- Scripts to create exploratory and results-oriented visualizations.
+├── tasks                  <- Optional repo-local Codex task tracking and lessons.
 └── tests                  <- Tests for functions in src.
 ```
+
+Optional prompts remove their corresponding files and folders during generation.
+
+## Codex Support
+
+If you enable `include_codex_scaffolding`, the generated project includes lightweight Codex support files that are meant to remain useful even on machines without the same global `~/.codex` setup.
+
+- `AGENTS.md`: project-specific guidance for commands, structure, debugging, and verification
+- `tasks/todo.md`: a lightweight plan/progress file for substantial tasks
+- `tasks/lessons.md`: repo-specific corrections and recurring gotchas
+- `tasks/decisions.md`: notable architectural, modelling, or workflow decisions
 
 ## Future
 * Test this template in more environments.

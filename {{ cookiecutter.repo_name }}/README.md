@@ -4,6 +4,9 @@
 ## Project Structure
 ```
 ├── .env                   <- Local secrets and credentials that should not be stored in source control.
+{% if cookiecutter.include_codex_scaffolding in ['yes', 'y', 'YES', 'Y'] -%}
+├── AGENTS.md              <- Repo-local Codex instructions for this project.
+{% endif -%}
 ├── Makefile               <- Makefile with useful commands for project setup and running analysis.
 ├── README.md              <- The top-level README for developers using this project.
 ├── app                    <- App-specific code, requirements file and Dockerfile.
@@ -26,6 +29,9 @@
 │       ├── model          <- Scripts to train models and make predictions.
 │       ├── utils          <- Utility functions.
 │       └── visualization  <- Scripts to create exploratory and results-oriented visualizations.
+{% if cookiecutter.include_codex_scaffolding in ['yes', 'y', 'YES', 'Y'] -%}
+├── tasks                  <- Repo-local task tracking, lessons, and decisions for substantial Codex work.
+{% endif -%}
 └── tests                  <- Tests for functions in src.
 ```
 
@@ -65,6 +71,20 @@
    git add .
    git commit -m "Initial commit"
    ```
+
+{% if cookiecutter.include_codex_scaffolding in ['yes', 'y', 'YES', 'Y'] -%}
+### Codex Support Files
+
+This project includes optional repo-local Codex scaffolding:
+
+- `AGENTS.md`: project-specific instructions that complement any global `~/.codex` settings
+- `tasks/todo.md`: a lightweight plan/progress file for substantial tasks
+- `tasks/lessons.md`: repo-specific lessons and recurring gotchas
+- `tasks/decisions.md`: notable architectural, modelling, or workflow decisions
+
+These files make the repo more self-contained when used across machines with different Codex global configuration.
+
+{% endif -%}
 
 ### Usage
 
