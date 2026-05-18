@@ -49,6 +49,7 @@ Describe the actual project here. Keep it short and concrete: what the repo is f
 - Prefer extending existing modules under `src/{{ cookiecutter.package_name }}/` before adding parallel helpers.
 - Treat raw data as immutable and keep transformations explicit in code.
 - Add or update tests for non-trivial behavior changes.
+- Keep documentation up to date when behavior, setup, commands, configuration, data assumptions, or user-facing workflows change.
 
 ## Risk notes
 
