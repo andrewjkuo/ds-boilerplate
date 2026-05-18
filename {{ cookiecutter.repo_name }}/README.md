@@ -82,6 +82,8 @@ This project includes optional repo-local Codex scaffolding:
 - `tasks/lessons.md`: repo-specific lessons and recurring gotchas
 - `tasks/decisions.md`: notable architectural, modelling, or workflow decisions
 
+If you plan to use Codex in this repo, update `AGENTS.md` early and replace the placeholder sections with the real project context, datasets, outputs, constraints, and any important local conventions.
+
 These files make the repo more self-contained when used across machines with different Codex global configuration.
 
 {% endif -%}

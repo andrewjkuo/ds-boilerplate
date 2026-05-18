@@ -1,75 +1,23 @@
 # Repository Instructions
 
 These instructions add project-specific context on top of the global Codex instructions from `~/.codex`.
+Keep this file focused on information that is true for this repo; avoid restating generic workflow guidance that already lives in `~/.codex`, `README.md`, or the `Makefile`.
 
 ## Project overview
 
-This is a Python data science project generated from `ds-boilerplate`. Prefer small, practical changes that keep analysis code reproducible and shared logic in `src/` instead of scattering it across notebooks, apps, and pipelines.
-
-## Tech stack
-
-- Language/runtime: Python 3.11+
-- Framework: lightweight Python project scaffold with optional Streamlit, FastAPI, and Prefect components
-- Package manager: `uv`
-- Test framework: `pytest` with `coverage`
-- Build system: `setuptools`
-- Deployment target: local development first; optional Dockerized app templates
-- Important external services: optional cloud storage and database integrations selected at project creation
+Describe the actual project here. Keep it short and concrete: what the repo is for, what it produces, and what correct work looks like.
 
 ## Commands
 
-Use these commands unless the repo state suggests otherwise:
+- Treat `README.md` and `Makefile` as the source of truth for setup, test, lint, and run commands.
+- Document only non-obvious or project-specific commands here when they exist.
 
-```bash
-# install
-make install
+## Working defaults
 
-# run dev
-# no single default entrypoint; use notebooks, pipelines, or optional app targets below
-
-# test
-make test
-
-# targeted test
-uv run pytest tests/test_utils.py
-
-# lint
-make lint
-
-# typecheck
-# no dedicated typecheck target is configured by default
-
-# build
-uv build
-```
-
-{% if cookiecutter.include_streamlit_app in ['yes', 'y', 'YES', 'Y'] -%}
-Additional app command:
-
-```bash
-make streamlit-build
-make streamlit-run
-```
-
-{% endif -%}
-{% if cookiecutter.include_fastapi_app in ['yes', 'y', 'YES', 'Y'] -%}
-Additional app command:
-
-```bash
-make fastapi-build
-make fastapi-run
-```
-
-{% endif -%}
-{% if cookiecutter.use_prefect in ['yes', 'y', 'YES', 'Y'] -%}
-Additional pipeline command:
-
-```bash
-make start-prefect-server
-make deploy-prefect
-```
-
-{% endif -%}
+- Prefer small, correct, reviewable changes over broad rewrites.
+- Inspect existing code, tests, config, and docs before guessing about project behavior.
+- Find root causes before patching symptoms unless the task explicitly asks for a temporary workaround.
+- Do not add production dependencies, change public interfaces, or restructure major folders without a clear project-specific reason.
 
 ## Architecture
 
@@ -88,46 +36,25 @@ make deploy-prefect
 {% endif -%}
 - `tasks/`: repo-local task tracking for substantial Codex work
 
-## Working style
+## Task tracking
 
-- Prefer small, correct, reviewable changes over broad rewrites.
-- Find root causes before patching symptoms unless the task explicitly asks for a temporary workaround.
-- Do not add new production dependencies without explaining why they are necessary.
-- Avoid unrelated formatting, renaming, or architectural changes.
-- Inspect existing code, tests, and configuration before guessing about project behavior.
+- Use `tasks/todo.md` for substantial tasks that involve multiple steps, debugging, cross-cutting edits, or meaningful verification.
+- Read `tasks/decisions.md` before changing architecture, public interfaces, data contracts, workflow patterns, or other areas where prior decisions may constrain the change.
+- Add an entry to `tasks/decisions.md` when the work introduces or reverses an important architectural, product, modelling, or workflow decision.
+- Use `tasks/lessons.md` for repo-specific corrections, recurring gotchas, or reusable mistakes that should change future work in this repo.
 
 ## Conventions
 
 - Keep reusable domain logic out of notebooks and app entry points when practical.
-- Prefer extending existing utilities under `src/{{ cookiecutter.package_name }}/utils/` before adding parallel helpers.
+- Prefer extending existing modules under `src/{{ cookiecutter.package_name }}/` before adding parallel helpers.
 - Treat raw data as immutable and keep transformations explicit in code.
 - Add or update tests for non-trivial behavior changes.
-- Use `tasks/todo.md` for substantial tasks and record reusable repo-specific corrections in `tasks/lessons.md`.
 
-## Debugging
-
-- Reproduce or inspect evidence first: logs, failing tests, types, or recent diffs.
-- Form a concrete hypothesis before editing.
-- Make the smallest fix that addresses the failure mode.
-- When the user corrects a reusable repo-specific assumption, record it in `tasks/lessons.md`.
-
-## Forbidden / risky actions
+## Risk notes
 
 - Do not commit `.env`, local data, secrets, or generated model artifacts unless the task explicitly requires it.
 - Do not edit generated or derived outputs directly when the source code or pipeline should change instead.
-- Do not add new infrastructure or heavy dependencies without explaining why they are needed for this project.
-- Do not restructure the project layout broadly unless the task explicitly calls for it.
-
-## Product/domain notes
-
-- This scaffold assumes a shared-code-first workflow: notebooks, apps, and pipelines should import from `src/`.
-- Optional cloud/database utilities are generated based on the project prompts; inspect those before adding a new integration path.
-- Repo-level Codex instructions should stay specific to this project and not restate general behavior already covered by global `~/.codex` settings.
-
-## Current known issues
-
-- No dedicated typecheck command is generated by default.
-- The template includes starter tests and utilities only; most real projects will need stronger verification over time.
+- Keep repo-level instructions specific to this project and avoid repeating generic Codex behavior from global settings.
 
 ## Verification expectations
 
@@ -139,4 +66,4 @@ make lint
 uv build
 ```
 
-Do not claim completion without verification. If something cannot be run, explain exactly what was blocked and what should be run next.
+Add extra validation commands here if this project adopts them. Do not claim completion without verification; if something cannot be run, explain exactly what was blocked and what should be run next.
