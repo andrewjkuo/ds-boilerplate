@@ -12,6 +12,8 @@ utils_dir = os.path.join(proj_path, "src", "{{cookiecutter.package_name}}", "uti
 # Remove unnecessary app templates
 if include_codex_scaffolding.lower() not in ['yes', 'y']:
     os.remove(os.path.join(proj_path, 'AGENTS.md'))
+    os.remove(os.path.join(proj_path, 'CONTEXT.md'))
+    shutil.rmtree(os.path.join(proj_path, 'docs'))
     shutil.rmtree(os.path.join(proj_path, 'tasks'))
 
 if include_streamlit_app.lower() not in ['yes', 'y']:

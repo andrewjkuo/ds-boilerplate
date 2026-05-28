@@ -1,6 +1,8 @@
 # Task Plan
 
-Use this file for substantial tasks only. Do not maintain it for tiny one-shot edits.
+Use this file as an ephemeral session scratchpad for substantial work only.
+
+Do not use it as the backlog. Backlog, prioritization, PRDs, and durable implementation tickets belong in GitHub Issues.
 
 ## Current task
 
