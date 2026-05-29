@@ -1,25 +1,27 @@
 # Repository Instructions
 
-These instructions add project-specific context on top of the global Codex instructions from `~/.codex`.
-Keep this file focused on information that is true for this repo; avoid restating generic workflow guidance that already lives in `~/.codex`, `README.md`, or the `Makefile`.
+These are repo-local instructions for agents working in this project. They should be useful even when no personal global agent config or optional skills are installed.
+
+Keep this file focused on how to work in this repo: commands, structure, source-of-truth boundaries, risks, and verification. Put domain vocabulary, invariants, workflows, data semantics, and business rules in `CONTEXT.md`.
 
 ## Project overview
 
 Describe the actual project here. Keep it short and concrete: what the repo is for, what it produces, and what correct work looks like.
 
-Keep domain facts, glossary terms, invariants, workflows, data semantics, and business rules in `CONTEXT.md`. Keep this file focused on how agents should operate in this repo: commands, structure, source-of-truth boundaries, risks, and verification.
+## Minimum operating rules
+
+- Make a short plan before non-trivial work: multi-step tasks, debugging, cross-cutting edits, architecture/API changes, data/schema changes, security-sensitive work, or unclear requirements.
+- Inspect existing code, tests, configuration, and docs before guessing about project behavior.
+- Find root causes before patching symptoms unless the task explicitly asks for a temporary workaround.
+- Keep changes scoped to the task and avoid unrelated formatting, naming, or architectural churn.
+- Do not add production dependencies, change public interfaces, or restructure major folders without a clear project-specific reason.
+- Run relevant verification before saying work is complete. If verification is blocked, state exactly what could not be run and why.
+- When corrected by the user, update `tasks/lessons.md` if the correction reveals a reusable repo-specific rule.
 
 ## Commands
 
 - Treat `README.md` and `Makefile` as the source of truth for setup, test, lint, and run commands.
 - Document only non-obvious or project-specific commands here when they exist.
-
-## Working defaults
-
-- Prefer small, correct, reviewable changes over broad rewrites.
-- Inspect existing code, tests, config, and docs before guessing about project behavior.
-- Find root causes before patching symptoms unless the task explicitly asks for a temporary workaround.
-- Do not add production dependencies, change public interfaces, or restructure major folders without a clear project-specific reason.
 
 ## Architecture
 
@@ -42,7 +44,7 @@ Keep domain facts, glossary terms, invariants, workflows, data semantics, and bu
 
 ## Task tracking
 
-- Use GitHub Issues for backlog, prioritization, PRDs, and durable implementation tickets.
+- Use the configured issue tracker for backlog, prioritization, PRDs, and durable implementation tickets.
 - Use `tasks/todo.md` only as an ephemeral session scratchpad for substantial work in progress.
 - Read relevant ADRs in `docs/adr/` before changing architecture, public interfaces, data contracts, workflow patterns, or other areas where prior decisions may constrain the change.
 - Add durable architectural, product, modelling, or workflow decisions as ADRs in `docs/adr/`.
@@ -60,7 +62,7 @@ Keep domain facts, glossary terms, invariants, workflows, data semantics, and bu
 
 - Do not commit `.env`, local data, secrets, or generated model artifacts unless the task explicitly requires it.
 - Do not edit generated or derived outputs directly when the source code or pipeline should change instead.
-- Keep repo-level instructions specific to this project and avoid repeating generic Codex behavior from global settings.
+- Keep repo-level instructions specific to this project and avoid duplicating broad personal agent preferences.
 
 ## Verification expectations
 
@@ -73,21 +75,3 @@ uv build
 ```
 
 Add extra validation commands here if this project adopts them. Do not claim completion without verification; if something cannot be run, explain exactly what was blocked and what should be run next.
-
-## Agent skills
-
-### Issue tracker
-
-Issues and PRDs are tracked in GitHub Issues for this repository once a GitHub remote exists. See `docs/agents/issue-tracker.md`.
-
-### Triage labels
-
-Triage uses the default canonical role strings (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
-
-### Domain docs
-
-Domain docs are configured as single-context (root `CONTEXT.md` + root `docs/adr/`). See `docs/agents/domain.md`.
-
-### Local setup
-
-This repo records the workflow that installed skills should follow, but does not include the skills or global Codex config. See `docs/agents/setup.md`.

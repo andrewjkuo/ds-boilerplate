@@ -4,8 +4,8 @@
 ## Project Structure
 ```
 ├── .env                   <- Local secrets and credentials that should not be stored in source control.
-{% if cookiecutter.include_codex_scaffolding in ['yes', 'y', 'YES', 'Y'] -%}
-├── AGENTS.md              <- Repo-local Codex instructions for this project.
+{% if cookiecutter.include_agent_scaffolding in ['yes', 'y', 'YES', 'Y'] -%}
+├── AGENTS.md              <- Repo-local agent instructions for this project.
 ├── CONTEXT.md             <- Domain context for agents and contributors.
 {% endif -%}
 ├── Makefile               <- Makefile with useful commands for project setup and running analysis.
@@ -22,10 +22,9 @@
 ├── pipelines              <- Pipeline scripts for data processing and model training.
 ├── pyproject.toml         <- Project metadata and dependencies.
 ├── references             <- Data dictionaries, manuals, and all other explanatory materials.
-{% if cookiecutter.include_codex_scaffolding in ['yes', 'y', 'YES', 'Y'] -%}
+{% if cookiecutter.include_agent_scaffolding in ['yes', 'y', 'YES', 'Y'] -%}
 ├── docs
-│   ├── adr                <- Architecture decision records.
-│   └── agents             <- Agent workflow docs.
+│   └── adr                <- Architecture decision records.
 {% endif -%}
 ├── src                    <- Source code for use in this project.
 │   └── {{ cookiecutter.package_name }}
@@ -35,7 +34,7 @@
 │       ├── model          <- Scripts to train models and make predictions.
 │       ├── utils          <- Utility functions.
 │       └── visualization  <- Scripts to create exploratory and results-oriented visualizations.
-{% if cookiecutter.include_codex_scaffolding in ['yes', 'y', 'YES', 'Y'] -%}
+{% if cookiecutter.include_agent_scaffolding in ['yes', 'y', 'YES', 'Y'] -%}
 ├── tasks                  <- Repo-local session scratchpad and lessons.
 {% endif -%}
 └── tests                  <- Tests for functions in src.
@@ -78,30 +77,24 @@
    git commit -m "Initial commit"
    ```
 
-{% if cookiecutter.include_codex_scaffolding in ['yes', 'y', 'YES', 'Y'] -%}
-### Codex Support Files
+{% if cookiecutter.include_agent_scaffolding in ['yes', 'y', 'YES', 'Y'] -%}
+### Agent Support Files
 
-This project includes optional repo-local Codex scaffolding:
+This project includes optional repo-local agent scaffolding:
 
-- `AGENTS.md`: project-specific instructions that complement any global `~/.codex` settings
+- `AGENTS.md`: project-specific operating instructions for agents
 - `CONTEXT.md`: project domain vocabulary, invariants, workflows, and data assumptions
-- `docs/agents/issue-tracker.md`: issue tracker conventions for skills that create or read tickets
-- `docs/agents/triage-labels.md`: canonical label mappings plus a small `gh` bootstrap path
-- `docs/agents/domain.md`: how skills should consume `CONTEXT.md` and ADRs
-- `docs/agents/setup.md`: what still needs to exist in global/local Codex setup
 - `docs/adr/README.md`: ADR purpose and starter template
 - `tasks/todo.md`: an ephemeral plan/progress scratchpad for substantial active work
 - `tasks/lessons.md`: repo-specific lessons and recurring gotchas
 
-The Codex skills themselves and your global Codex config do not port with this repo. Keep that personal setup outside this repo, for example in dotfiles or a machine bootstrap checklist. The repo-local files make the repo usable without that setup and give installed skills the repo-local configuration they need when they are available.
-
-By default, this scaffold assumes GitHub Issues for backlog, PRDs, prioritization, and durable implementation tickets. The optional triage labels are `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, and `wontfix`; create them with the `gh` commands in `docs/agents/triage-labels.md` after this repo exists on GitHub.
+Optional agent workflow setup: this template can be paired with external engineering-skill packs for agents. One compatible setup skill is `setup-matt-pocock-skills`, which creates repo-local workflow config for issue trackers, triage labels, and domain docs. If your agent environment provides that skill, run it after generation when you want those workflow docs. If not, skip this step; the repo still works with the baseline `AGENTS.md`, `CONTEXT.md`, ADRs, and task files.
 
 Use `AGENTS.md` for repo operating instructions and `CONTEXT.md` for domain truth. ADRs in `docs/adr/` are the durable decision record.
 
-If you plan to use Codex in this repo, update `AGENTS.md` early with real setup commands, verification commands, project layout, operational risks, and local conventions. Put domain vocabulary, datasets, units, invariants, and business rules in `CONTEXT.md`.
+Update `AGENTS.md` early with real setup commands, verification commands, project layout, operational risks, and local conventions. Put domain vocabulary, datasets, units, invariants, and business rules in `CONTEXT.md`.
 
-These files make the repo more self-contained when used across machines with different Codex global configuration.
+These files make the repo more self-contained when used across machines with different agent tooling.
 
 {% endif -%}
 

@@ -2,7 +2,7 @@
 
 Use this file as an ephemeral session scratchpad for substantial work only.
 
-Do not use it as the backlog. Backlog, prioritization, PRDs, and durable implementation tickets belong in GitHub Issues.
+Do not use it as the backlog. Backlog, prioritization, PRDs, and durable implementation tickets belong in the configured issue tracker.
 
 ## Current task
 
